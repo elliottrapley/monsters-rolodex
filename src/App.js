@@ -5,23 +5,24 @@ import './App.css';
 
 class App extends Component { // Changed from function to Class. App extends from the Component class. 
 
+  constructor() {
+    super(); // calls the underlying constructor method. 
+
+    this.state = { // React is looking for inside the constructor inside the component.
+      name: 'Dave'
+    } 
+  }
+
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
 
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn react
-          </a>
+          <p>Hi {this.state.name}</p>
+          <button onClick={() => {
+            this.setState({name: 'John'}) // Using the setState method to update the name to 'John' after clicking on the button. 
+          }}>Change name</button> 
         </header>
       </div>
     );
