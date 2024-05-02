@@ -9,7 +9,11 @@ class App extends Component { // Changed from function to Class. App extends fro
     super(); // calls the underlying constructor method. 
 
     this.state = { // React is looking for inside the constructor inside the component.
-      name: 'Dave'
+      name: { 
+        firstName: 'Elliott', 
+        lastName: 'Rapley' 
+      },
+      company: 'ZTM'
     } 
   }
 
@@ -18,10 +22,22 @@ class App extends Component { // Changed from function to Class. App extends fro
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Hi {this.state.name}</p>
+          <img src={ logo } className="App-logo" alt="logo" />
+          <p>
+            Hi { this.state.firstName } { this.state.lastName }, 
+            I work at { this.state.company }
+          </p>
           <button onClick={() => {
-            this.setState({name: 'John'}) // Using the setState method to update the name to 'John' after clicking on the button. 
+            this.setState(() => {  
+              return {
+                name: {
+                  firstName: 'John', 
+                  lastName: 'Smith'
+                }
+              };
+            }, () => {
+              console.log(this.state);          
+            });
           }}>Change name</button> 
         </header>
       </div>
