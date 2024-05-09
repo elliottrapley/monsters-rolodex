@@ -10,6 +10,7 @@ class App extends Component { // Changed from function to Class. App extends fro
 
     this.state = {
       monsters: [],
+      searchField: ''
     };
   }
 
@@ -26,18 +27,36 @@ class App extends Component { // Changed from function to Class. App extends fro
         this.setState(() => { // Then, use setState to add the users to the state and then render. 
           return { monsters: users }
         },
-      () => { // then just log this in the console of the dev tools. 
-        console.log(this.state);
+      () => { 
+        console.log(this.state); // then just log this in the console of the dev tools. 
         }
       )
-    )
-  };
+    );
+  }
 
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
+    console.log('render')
+
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
+
     return (
       <div className="App">
-        {
-          this.state.monsters.map((monster) => { // Using a call back function 
+        <input 
+          className='search-box'
+          type='search' 
+          placeholder='Search Monsters' 
+          onChange={(event) => {
+            console.log({startingArray: this.state.monsters});
+            const searchField = event.target.value.toLocaleLowerCase();
+            this.setState( () => {
+              return { searchField }
+              }
+            );
+          }}
+        />
+        {filteredMonsters.map((monster) => { // Using a call back function 
             return (
               <div key={monster.id}>
                 <h1>{monster.name}</h1>
