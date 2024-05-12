@@ -34,11 +34,22 @@ class App extends Component { // Changed from function to Class. App extends fro
     );
   }
 
+  // Method below runs when the constructor is run. 
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLocaleLowerCase();
+    this.setState( () => {
+      return { searchField }
+      }
+    );
+  }
+
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
     console.log('render')
 
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this; 
     const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
@@ -47,14 +58,7 @@ class App extends Component { // Changed from function to Class. App extends fro
           className='search-box'
           type='search' 
           placeholder='Search Monsters' 
-          onChange={(event) => {
-            console.log({startingArray: this.state.monsters});
-            const searchField = event.target.value.toLocaleLowerCase();
-            this.setState( () => {
-              return { searchField }
-              }
-            );
-          }}
+          onChange={onSearchChange}
         />
         {filteredMonsters.map((monster) => { // Using a call back function 
             return (
