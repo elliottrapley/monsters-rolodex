@@ -1,6 +1,6 @@
 import { Component } from 'react'; // Importing component to create a component class
 
-import logo from './logo.svg';
+import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 class App extends Component { // Changed from function to Class. App extends from the Component class. 
@@ -38,10 +38,10 @@ class App extends Component { // Changed from function to Class. App extends fro
   onSearchChange = (event) => {
     const searchField = event.target.value.toLocaleLowerCase();
     this.setState( () => {
-      return { searchField }
+      return { searchField };
       }
     );
-  }
+  };
 
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
     console.log('render')
@@ -60,14 +60,15 @@ class App extends Component { // Changed from function to Class. App extends fro
           placeholder='Search Monsters' 
           onChange={onSearchChange}
         />
-        {filteredMonsters.map((monster) => { // Using a call back function 
+        {/* {filteredMonsters.map((monster) => { // Using a call back function 
             return (
               <div key={monster.id}>
                 <h1>{monster.name}</h1>
               </div>
             );
           })
-        }
+        } */}
+        <CardList />
       </div>
     );
   } 
