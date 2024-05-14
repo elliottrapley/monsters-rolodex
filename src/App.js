@@ -27,9 +27,6 @@ class App extends Component { // Changed from function to Class. App extends fro
         this.setState(() => { // Then, use setState to add the users to the state and then render. 
           return { monsters: users }
         },
-      () => { 
-        console.log(this.state); // then just log this in the console of the dev tools. 
-        }
       )
     );
   }
@@ -44,7 +41,6 @@ class App extends Component { // Changed from function to Class. App extends fro
   };
 
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
-    console.log('render')
 
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this; 
@@ -68,7 +64,7 @@ class App extends Component { // Changed from function to Class. App extends fro
             );
           })
         } */}
-        <CardList />
+        <CardList monsters={ filteredMonsters } />
       </div>
     );
   } 
