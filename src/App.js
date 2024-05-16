@@ -1,6 +1,7 @@
 import { Component } from 'react'; // Importing component to create a component class
 
 import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 
 class App extends Component { // Changed from function to Class. App extends from the Component class. 
@@ -38,7 +39,7 @@ class App extends Component { // Changed from function to Class. App extends fro
       return { searchField };
       }
     );
-  };
+  }
 
   render() { // Using a render method and calling the the JSX/HTML code below within this function.
 
@@ -50,20 +51,11 @@ class App extends Component { // Changed from function to Class. App extends fro
 
     return (
       <div className="App">
-        <input 
+        <SearchBox 
           className='search-box'
-          type='search' 
-          placeholder='Search Monsters' 
-          onChange={onSearchChange}
+          onChangeHandler={ onSearchChange } 
+          placeholder='Search for monsters' 
         />
-        {/* {filteredMonsters.map((monster) => { // Using a call back function 
-            return (
-              <div key={monster.id}>
-                <h1>{monster.name}</h1>
-              </div>
-            );
-          })
-        } */}
         <CardList monsters={ filteredMonsters } />
       </div>
     );
