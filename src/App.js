@@ -52,9 +52,9 @@ class App extends Component { // Changed from function to Class. App extends fro
     return (
       <div className="App">
         <SearchBox 
-          className='search-box'
+          className='monsters-search-box'
           onChangeHandler={ onSearchChange } 
-          placeholder='Search for monsters' 
+          placeholder='Search monsters' 
         />
         <CardList monsters={ filteredMonsters } />
       </div>
